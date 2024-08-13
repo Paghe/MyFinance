@@ -1,7 +1,10 @@
 from user_class import User
+from utils import insert_data
 
 def main():
-    test = User("Piero", "Pompetta", 37)
+    attributes = insert_data()
+    test = User(attributes)
+    print(test.attributes["name"])
     
 if __name__ == "__main__":
     main()
