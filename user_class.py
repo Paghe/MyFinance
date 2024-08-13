@@ -1,3 +1,4 @@
+
 class User:
     def __init__(self, attributes) -> None:
         self.attributes = attributes
@@ -8,6 +9,10 @@ class User:
     
     category = ["food", "rent", "entertainment"]
     # maybe an hashmap where store the total of each category?
+    def insert_account_balance(self):
+        print("How much money do you have on your banck account?")
+        amount = input("Insert the amount: ")
+        self.attributes["owning"] = amount
     
 
         

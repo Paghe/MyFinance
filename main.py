@@ -1,10 +1,15 @@
 from user_class import User
-from utils import insert_data
+from utils import insert_data, save_to_csv
 
-def main():
+def run_account():
     attributes = insert_data()
-    test = User(attributes)
-    print(test.attributes["name"])
+    account = User(attributes)
+    if account:
+        account.insert_account_balance()
+        save_to_csv(attributes)
     
+def main():
+    run_account()
+   
 if __name__ == "__main__":
     main()
