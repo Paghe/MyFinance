@@ -8,6 +8,7 @@ def split_for_hashmap(row, index):
     split = row[0].split(':')[index].strip()
     if split:
         return(split)
+    
 
 def read_from_csv(filename='user_data.csv'):
     current_dir = os.path.dirname(__file__)
