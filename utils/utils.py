@@ -1,11 +1,14 @@
 import csv
+from datetime import datetime
+from pathlib import Path
+import os
 
 def check_value(token, value):
     if ((token == "name"  or token == "lastname") and value.isalpha()):
         return value
-    elif token == "age" or token == 'income':
+    elif token == "age" or token == 'income' or token == 'owning':
         try:
-            num = float(value) if token == 'income' else int(value)
+            num = float(value) if token == 'income' or token == 'owning' else int(value)
             return num
         except ValueError:
             print("Invalid number format.")
@@ -32,9 +35,17 @@ def insert_data():
     return store
 
 def save_to_csv(attributes, filename='user_data.csv'):
-    fieldnames = attributes.keys()
+    current_date = datetime.now().strftime('%d-%m-%Y')
+    rows = [f"DATE: {current_date}"] + [f"{key.upper()}: {value}" for key, value in attributes.items()]
     with open(filename, mode='a', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        if file.tell() == 0:
-            writer.writeheader
-        writer.writerow(attributes)
+        writer = csv.writer(file)
+        for row in rows:
+            writer.writerow([row])
+        writer.writerow([])
+
+def file_data():
+    file = Path('user_data.csv')
+    if file.exists():
+        return 1
+    else:
+        return 0

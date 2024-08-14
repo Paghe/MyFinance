@@ -14,7 +14,3 @@ class User:
         amount = input("Insert the amount: ")
         self.attributes["owning"] = amount
     
-
-        
-    
-        
