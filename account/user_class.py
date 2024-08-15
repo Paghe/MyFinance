@@ -1,6 +1,8 @@
+from account.tracker_class import Tracker
 
-class User:
+class User(Tracker):
     def __init__(self, attributes) -> None:
+        super().__init__()
         self.attributes = attributes
     
     def __str__(self) -> str:
@@ -15,12 +17,13 @@ class User:
             self.attributes["owning"] = amount
         except KeyboardInterrupt:
              print("\nProcess interrupted by user. Exiting...")
+
     def get_attribute(self):
         return self.attributes
     
     def get_attribute_value(self, key):
         if self.attributes[key]:
             return self.attributes[key]
-    
+        
     def set_attribute(self, key, value):
         self.attributes[key] = value
