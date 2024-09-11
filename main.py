@@ -6,8 +6,10 @@ from utils.menu import run_menu
 import os
 def run_account():
     if file_data():
-        attributes = read_from_csv()
+        attributes, expenses = read_from_csv()
         account = User(attributes)
+        for category, amount in expenses.items():
+            account.add_expenses(category, amount)
     else:  
         attributes = insert_data()
         account = User(attributes)

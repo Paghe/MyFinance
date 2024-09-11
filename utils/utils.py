@@ -4,7 +4,10 @@ from pathlib import Path
 import os
 
 def check_value(token, value):
-    if ((token == "name" or token == "lastname") and value.isalpha()):
+    category = ["food", "rent", "entertainment"]
+    if token in category:
+        return float(value)
+    elif ((token == "name" or token == "lastname") and value.isalpha()):
         return value
     elif (token == "date"):
         return value
@@ -43,7 +46,7 @@ def save_to_csv(user, filename='user_data.csv'):
     expenses = user.get_expenses()
     row_expenses = [f"{key.upper()}: {value}" for key, value in expenses.items()]
     user_rows = [f"{key.upper()}: {value}" for key, value in attributes.items()]
-    all_rows = user_rows + row_expenses
+    all_rows = user_rows + ["EXPENSES"] + row_expenses
     with open(filename, mode='w', newline='') as file:
         writer = csv.writer(file)
         for row in all_rows:
